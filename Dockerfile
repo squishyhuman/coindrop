@@ -1,4 +1,4 @@
-FROM mrsmkl/llvm-wasm:try1
+FROM debian:buster
 MAINTAINER Sami Mäkelä
 
 RUN apt-get update \
@@ -15,10 +15,7 @@ RUN git clone https://github.com/TrueBitFoundation/ocaml-offchain \
 RUN git clone https://github.com/juj/emsdk \
  && cd emsdk \
  && ./emsdk install sdk-1.37.28-64bit \
- && ./emsdk activate sdk-1.37.28-64bit \
- && cd /root \
- && sed -e "s/'\/emsdk\/clang\/e1.37.28_64bit'/'\/usr\/bin'/" .emscripten > emscripten \
- && cp emscripten .emscripten
+ && ./emsdk activate sdk-1.37.28-64bit
 
 RUN apt install -y bash \
  && rm /bin/sh \
